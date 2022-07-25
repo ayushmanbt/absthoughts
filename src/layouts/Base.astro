@@ -19,7 +19,7 @@ const { pageTitle, description, tags, thumbnail } = Astro.props as Props;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{pageTitle} | AB's Thoughts</title>
+    <title>{pageTitle} | AB's Thought</title>
     {
         description && <meta name="description" content={description}>
     }
@@ -46,7 +46,7 @@ const { pageTitle, description, tags, thumbnail } = Astro.props as Props;
 
         <a href="/" class="flex gap-2 justify-center">
             <img src="/A.png" alt="" class="w-[30px] h-[30px] block"> 
-            <p class="hidden md:block">AB's Thoughts</p> 
+            <p class="hidden md:block">AB's Thought</p> 
         </a>
 
         <div class=" flex-grow flex justify-end gap-2">
