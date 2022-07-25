@@ -1,6 +1,6 @@
 ---
 import BlogTile from "../../components/BlogTile.astro";
-import BaseLayout from "../../layouts/baseLayout.astro";
+import Base from "../../layouts/Base.astro";
 export async function getStaticPaths({paginate}){
     const blogs = (await Astro.glob("./*.md")).filter(blog => !blog.frontmatter.draft).sort((post1,post2) => {
     const date1: any = new Date(post1.frontmatter.date);
@@ -14,7 +14,7 @@ export async function getStaticPaths({paginate}){
 const {page} = Astro.props;
 ---
 
-<BaseLayout pageTitle={`Archive - Page ${page.currentPage}`}>
+<Base pageTitle={`Archive - Page ${page.currentPage}`}>
 
     <div class="max-w-[1000px] w-[90%] p-4 mx-auto mb-2">
         
@@ -34,4 +34,4 @@ const {page} = Astro.props;
 
     </div>
 
-</BaseLayout>
+</Base>
