@@ -8,9 +8,6 @@
     <a target="_blank" id="twitterButton" class="dark:text-blue-300">
         <i data-feather="twitter"></i>
     </a>
-    <button id="copyLinkButton" class="dark:text-blue-300">
-        <i data-feather="link"></i>
-    </button>
 </div>
 
 <script>
@@ -20,15 +17,9 @@
     const facebookButton = document.getElementById("facebookButton")
     const whatsappButton = document.getElementById("whatsappButton")
     const twitterButton = document.getElementById("twitterButton")
-    const copyLinkButton = document.getElementById("copyLinkButton")
 
     facebookButton.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postURL}`)
     whatsappButton.setAttribute("href", `https://api.whatsapp.com/send?text=${postTitle} ${postURL}`)
     twitterButton.setAttribute("href", `https://twitter.com/share?url=${postURL}&text=${postTitle}`)
-
-    copyLinkButton.addEventListener("click", () => {
-        navigator.clipboard.writeText(`${document.title} is an awesome post... Check it out at ${window.location.href}`);
-        alert("Link Copied to clipboard!");
-    })
 
 </script>
