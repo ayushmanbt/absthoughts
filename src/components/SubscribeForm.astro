@@ -1,11 +1,11 @@
-<form id="sub" class="my-2">
+<form action="https://assets.mailerlite.com/jsonp/109289/forms/61634363868055127/subscribe" method="post" target="_blank" id="sub" class="my-2">
     <div class="flex max-w-[500px] mx-auto justify-center">
-        <input type="email" name="email" id="email" placeholder="abc@xyz.com" class="outline-none border-blue-600 border-2 px-2 py-1 flex-grow" required/>
+        <input type="email" name="fields[email]" autocomplete="email" id="email" placeholder="abc@xyz.com" class="outline-none border-blue-600 border-2 px-2 py-1 flex-grow" required/>
         <input type="submit" value="Subscribe" class="px-4 py-2 bg-blue-600 text-white cursor-pointer">
     </div>
 </form>
 
-<script is:raw>
+<!-- <script is:raw>
 const form = document.getElementById("sub");
 const email = document.getElementById("email");
 
@@ -14,4 +14,4 @@ form.addEventListener("submit", (e) => {
     console.log(email.value);
     email.value = "";
 })
-</script>
+</script> -->
