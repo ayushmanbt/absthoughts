@@ -11,6 +11,6 @@ export const get = () => rss({
         link: post.url,
         title: post.frontmatter.title,
         pubDate: post.frontmatter.date,
-        description: post.frontmatter.description
+        excerpt: post.frontmatter.description
     }))
 })
