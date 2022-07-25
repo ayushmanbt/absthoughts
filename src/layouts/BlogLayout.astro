@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "./baseLayout.astro";
+import Base from "./Base.astro";
 import SubscribeForm from "../components/SubscribeForm.astro";
 import ShareButtons from "../components/ShareButtons.astro";
 
@@ -15,7 +15,7 @@ let formattedDate = new Date(date).toLocaleString("en-US", {
 })
 ---
 
-<BaseLayout 
+<Base
     pageTitle={title}
     description={description}
     tags={tags}
@@ -47,7 +47,7 @@ let formattedDate = new Date(date).toLocaleString("en-US", {
         <SubscribeForm />
     </div>
 
-</BaseLayout>
+</Base>
 
 <style is:global>
     .content h3{
