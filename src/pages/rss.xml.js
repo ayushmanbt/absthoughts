@@ -10,6 +10,7 @@ export const get = () => rss({
     items: posts.map(post => ({
         link: post.url,
         title: post.frontmatter.title,
-        pubDate: post.frontmatter.date
+        pubDate: post.frontmatter.date,
+        description: post.frontmatter.description
     }))
 })
