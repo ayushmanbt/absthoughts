@@ -1,0 +1,51 @@
+---
+import BlogTile from "../components/BlogTile.astro";
+import BaseLayout from "../layouts/baseLayout.astro";
+import SubscribeForm from "../components/SubscribeForm.astro";
+
+let posts = (await Astro.glob("./blogs/*.md")).filter(post => !post.frontmatter.draft)
+
+
+posts = posts.sort((post1,post2) => {
+    const date1: any = new Date(post1.frontmatter.date);
+    const date2: any = new Date(post2.frontmatter.date);
+    return date2 - date1
+});
+
+posts = posts.slice(0,4)
+---
+
+<BaseLayout pageTitle="Home">
+    <div class="max-w-[1000px] w-[90%] p-4 mx-auto mb-2">
+        
+        <header class="flex flex-col md:flex-row items-center mb-3">
+            <div class="h-fit">
+                <h3 class="text-3xl font-quicksand font-bold mb-5">AB's Thoughts</h3>
+                <p class="max-w-[50ch] mb-5">A peaceful blog about student life especially for computer science students and students aiming to study abroad</p>
+                <SubscribeForm/>
+            </div>
+            <div>
+                <img src="/hero.png" alt="Hero Image" class="max-w-[300px] w-[50vw] mx-auto">
+                <a class="text-xs" href='https://www.freepik.com/vectors/creative-illustration'>Creative illustration vector created by pikisuperstar - www.freepik.com</a>
+            </div>
+        </header>
+
+        <h3 class="text-xl font-bold mb-2">
+            Recent Posts
+        </h3>
+        <div class="grid md:grid-cols-2 gap-3">
+            {
+                posts.map((post) => {
+                    return (
+                        <BlogTile
+                            title = {post.frontmatter.title}
+                            description = {post.frontmatter.description}
+                            date = {post.frontmatter.date}
+                            url = {post.url}
+                        /> 
+                    )
+                })
+            }
+        </div>
+    </div>
+</BaseLayout>

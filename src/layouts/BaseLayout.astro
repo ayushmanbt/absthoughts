@@ -1,0 +1,97 @@
+---
+import "../css/base.css"
+
+import FooterBar from "../components/FooterBar.astro";
+
+export interface Props {
+    pageTitle: string;
+    description?: string;
+    tags?: string;
+    thumbnail?: string;
+}
+
+const { pageTitle, description, tags, thumbnail } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{pageTitle} | AB's Thoughts</title>
+    {
+        description && <meta name="description" content={description}>
+    }
+    {
+        description && <meta name="og:description" content={description}>
+    }
+    {
+        tags && <meta name="keywords" content={tags}>
+    }
+    {
+        thumbnail && <meta name="og:image" content={thumbnail}>
+    }
+    {
+        description && <meta name="og:type" content="article" />
+    }
+    {
+        description && <meta name="robots" content="index,follow" />
+    }
+    <script is:inline src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="flex flex-col min-h-screen " id="body">
+
+    <nav class="flex p-4 justify-between items-center fixed top-0 w-[100%] bg-white dark:bg-gray-900 shadow-md">
+
+        <a href="/" class="flex gap-2 justify-center">
+            <img src="/A.png" alt="" class="w-[30px] h-[30px] block"> 
+            <p class="hidden md:block">AB's Thoughts</p> 
+        </a>
+
+        <div class=" flex-grow flex justify-end gap-2">
+            <p class="hidden md:block">Toggle Dark Theme</p>
+            <button id="toggleButton" class="w-[50px] h-[25px] bg-gray-200 relative rounded-xl">
+                <span class="w-[25px] h-[25px] border-2 border-gray-200 bg-blue-600 rounded-xl absolute top-0 left-0 dark:translate-x-[25px] transition-all"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="flex-grow mt-20">
+        <slot />
+    </div>
+    <FooterBar />
+</body>
+</html>
+
+<style scoped>
+    #body.dark{
+        @apply bg-gray-900;
+        @apply text-white;
+    }
+</style>
+
+<script is:raw>
+    feather.replace();
+    let isDark = localStorage.getItem("isDark");
+
+    const bod = document.getElementById("body");
+    const toggleButton = document.getElementById("toggleButton");
+
+    if(isDark == "true"){
+        bod.classList.add("dark");
+        isDark = true;
+    }
+
+    else{
+        isDark = false;
+    }
+
+    toggleButton.addEventListener("click", () => {
+        isDark = !isDark;
+
+        bod.classList.toggle("dark");
+        localStorage.setItem("isDark", isDark);
+    });
+
+</script>

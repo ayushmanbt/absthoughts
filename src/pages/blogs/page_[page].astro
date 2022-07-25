@@ -1,0 +1,37 @@
+---
+import BlogTile from "../../components/BlogTile.astro";
+import BaseLayout from "../../layouts/baseLayout.astro";
+export async function getStaticPaths({paginate}){
+    const blogs = (await Astro.glob("./*.md")).filter(blog => !blog.frontmatter.draft).sort((post1,post2) => {
+    const date1: any = new Date(post1.frontmatter.date);
+    const date2: any = new Date(post2.frontmatter.date);
+    return date2 - date1
+});;
+    
+    return paginate(blogs, {pageSize: 10})
+}   
+
+const {page} = Astro.props;
+---
+
+<BaseLayout pageTitle={`Archive - Page ${page.currentPage}`}>
+
+    <div class="max-w-[1000px] w-[90%] p-4 mx-auto mb-2">
+        
+        <h3 class="text-3xl font-bold mb-3">Archive</h3>
+
+        <div class="grid md:grid-cols-2 gap-3">
+        {
+            page.data.map(data => <BlogTile title={data.frontmatter.title} description={data.frontmatter.description} date={data.frontmatter.date} url={data.url}/>)
+        }
+        </div>
+
+
+        <div class="mt-3 flex justify-between">
+            <a href={`${page.url.prev}`} class={page.url.prev ? "" : "disabled cursor-default text-gray-300 pointer-events-none"}>&lt;- Previous Page</a>
+            <a href={`${page.url.next}`} class={page.url.next ? "" : "disabled cursor-default text-gray-300 pointer-events-none"}>Next Page -&gt;</a>
+        </div>
+
+    </div>
+
+</BaseLayout>
