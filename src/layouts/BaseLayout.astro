@@ -71,7 +71,7 @@ const { pageTitle, description, tags, thumbnail } = Astro.props as Props;
     }
 </style>
 
-<script is:inline>
+<script is:raw>
     feather.replace();
     let isDark = localStorage.getItem("isDark");
 
